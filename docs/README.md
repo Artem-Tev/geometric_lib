@@ -54,8 +54,8 @@ __Параметры__:
 __Примеры__:
     square_perimeter(5) = 4*5 = 20
 
-commit 1f8da32a16977eb450dab90260c7518fef29e07d (HEAD -> develop)
+commit e703e03ca6b048d681e84271b497cd1fc6cfff5d (HEAD -> feature/documented)
 Author: Artem-Tev <artemt1011@gmail.com>
-Date:   Sat Oct 19 19:16:35 2024 +0300
+Date:   Sun Oct 20 13:32:15 2024 +0300
 
-    new docummentation
+    new documentation
