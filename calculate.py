@@ -7,7 +7,7 @@ sizes = {"perimeter-circle": 1, "area-circle": 1,
          "perimeter-square": 1, "area-square": 1}
 
 
-def calc(fig, func, size):
+def calc(fig, size, func):
     assert fig in figs
     assert func in funcs
 
@@ -40,5 +40,5 @@ if __name__ == "__main__":
         size = list(map(int, input("Input figure sizes separated by space, "
                                    "1 for circle and square\n").split(' ')))
 
-    result = calc(fig, func, size)
+    result = calc(fig, size, func)
     print(f'{func} of {fig} is {result}')
