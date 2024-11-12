@@ -22,17 +22,17 @@ class TestTriangle(unittest.TestCase):
     def test_triangle_perimeter_2(self):
         a, b, c = 1427, 2048, 3656
         result = perimeter(a, b, c)
-        self.assertEqual(result, 8131)
+        self.assertEqual(result, 7131)
 
     def test_triangle_area_3(self):
         a, h = 78.25, 15.8
         result = area(a, h)
-        self.assertEqual(result, 617.75)
+        self.assertEqual(result, 618.1750000000001)
 
     def test_triangle_perimeter_3(self):
         a, b, c = 6.2, 7.5, 9.1
         result = perimeter(a, b, c)
-        self.assertEqual(result, 22.8)
+        self.assertEqual(result, 22.799999999999997)
 
     def test_invalid_parameters(self):
         with self.assertRaises(TypeError):

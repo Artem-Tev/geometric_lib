@@ -27,3 +27,4 @@ def perimeter(r):
     if r == float('-inf'):
         return float('-inf')
     return 2 * math.pi * abs(r)
+print(area(6), perimeter(6))

@@ -5,14 +5,14 @@ from circle import area, perimeter
 
 class TestCircle(unittest.TestCase):
     def test_circle_area_1(self):
-        r = 10
+        r = 6
         result = area(r)
-        self.assertAlmostEqual(result, 314.1592653589793, places=5)
+        self.assertAlmostEqual(result, 113.09733552923255, places=5)
 
     def test_circle_perimeter_1(self):
-        r = 10
+        r = 6
         result = perimeter(r)
-        self.assertAlmostEqual(result, 62.83185307179586, places=5)
+        self.assertAlmostEqual(result, 37.69911184307752, places=5)
 
     def test_circle_area_2(self):
         r = 100000
