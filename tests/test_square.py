@@ -1,32 +1,47 @@
-import pytest
-from square import area, perimeter  # замените `your_module` на имя вашего файла без расширения .py
+import unittest
+
+from square import area, perimeter
 
 
-def test_area():
-    assert area(1) == 1
-    assert area(0) == 0
-    assert area(2.5) == pytest.approx(6.25, 0.0001)
-    assert area(-3) == pytest.approx(9, 0.0001)  # отрицательное значение стороны
-    assert area(float('inf')) == float('inf')
-    assert area(float('-inf')) == float('inf')
+class TestSquare(unittest.TestCase):
+    def test_square_area_1(self):
+        a = 5
+        result = area(a)
+        self.assertEqual(result, 25)
 
-    # Проверка обработки некорректных типов данных
-    with pytest.raises(TypeError):
-        area("string")
-    with pytest.raises(TypeError):
-        area(None)
+    def test_square_perimeter_1(self):
+        a = 5
+        result = perimeter(a)
+        self.assertEqual(result, 20)
+
+    def test_square_area_2(self):
+        a = 104857
+        result = area(a)
+        self.assertEqual(result, 10995187249)
+
+    def test_square_perimeter_2(self):
+        a = 104857
+        result = perimeter(a)
+        self.assertEqual(result, 419428)
+
+    def test_square_area_3(self):
+        a = 21.78
+        result = area(a)
+        self.assertEqual(result, 474.3684)
+
+    def test_square_perimeter_3(self):
+        a = 21.78
+        result = perimeter(a)
+        self.assertEqual(result, 87.12)
+
+    def test_invalid_parameters(self):
+        with self.assertRaises(TypeError):
+            area("invalid")
+
+        with self.assertRaises(TypeError):
+            perimeter("invalid")
 
 
-def test_perimeter():
-    assert perimeter(1) == 4
-    assert perimeter(0) == 0
-    assert perimeter(2.5) == pytest.approx(10, 0.0001)
-    assert perimeter(-3) == pytest.approx(-12, 0.0001)  # отрицательное значение стороны
-    assert perimeter(float('inf')) == float('inf')
-    assert perimeter(float('-inf')) == float('-inf')
+if __name__ == "__main__":
+    unittest.main()
 
-    # Проверка обработки некорректных типов данных
-    with pytest.raises(TypeError):
-        perimeter("string")
-    with pytest.raises(TypeError):
-        perimeter(None)

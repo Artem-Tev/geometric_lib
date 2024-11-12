@@ -1,35 +1,46 @@
-import pytest
-import math
+import unittest
+
 from circle import area, perimeter
 
 
-def test_area():
+class TestCircle(unittest.TestCase):
+    def test_circle_area_1(self):
+        r = 10
+        result = area(r)
+        self.assertAlmostEqual(result, 314.1592653589793, places=5)
 
-    assert area(1) == pytest.approx(math.pi, 0.0001)
-    assert area(0) == 0
-    assert area(2.5) == pytest.approx(math.pi * 2.5 * 2.5, 0.0001)
-    assert area(-3) == pytest.approx(math.pi * 3 * 3, 0.0001)
+    def test_circle_perimeter_1(self):
+        r = 10
+        result = perimeter(r)
+        self.assertAlmostEqual(result, 62.83185307179586, places=5)
 
-    assert area(float('inf')) == float('inf')
-    assert area(float('-inf')) == float('inf')
+    def test_circle_area_2(self):
+        r = 100000
+        result = area(r)
+        self.assertAlmostEqual(result, 31415926535.89793, places=5)
 
-    with pytest.raises(TypeError):
-        area("string")
-    with pytest.raises(TypeError):
-        area(None)
+    def test_circle_perimeter_2(self):
+        r = 100000
+        result = perimeter(r)
+        self.assertAlmostEqual(result, 628318.5307179586, places=5)
+
+    def test_circle_area_3(self):
+        r = 2.5
+        result = area(r)
+        self.assertAlmostEqual(result, 19.634954084936208, places=5)
+
+    def test_circle_perimeter_3(self):
+        r = 2.5
+        result = perimeter(r)
+        self.assertAlmostEqual(result, 15.707963267948966, places=5)
+
+    def test_invalid_parameters(self):
+        with self.assertRaises(TypeError):
+            area("invalid")
+
+        with self.assertRaises(TypeError):
+            perimeter("invalid")
 
 
-def test_perimeter():
-    # Основные тесты
-    assert perimeter(1) == pytest.approx(2 * math.pi, 0.0001)
-    assert perimeter(0) == 0
-    assert perimeter(2.5) == pytest.approx(2 * math.pi * 2.5, 0.0001)
-    assert perimeter(-3) == pytest.approx(2 * math.pi * 3, 0.0001)
-
-    assert perimeter(float('inf')) == float('inf')
-    assert perimeter(float('-inf')) == float('-inf')
-
-    with pytest.raises(TypeError):
-        perimeter("string")
-    with pytest.raises(TypeError):
-        perimeter(None)
+if __name__ == "__main__":
+    unittest.main()

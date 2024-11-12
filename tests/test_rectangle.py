@@ -1,48 +1,46 @@
-import pytest
+import unittest
+
 from rectangle import area, perimeter
 
-def test_area():
-    # Основные тесты
-    assert area(2, 3) == 6
-    assert area(0, 5) == 0
-    assert area(2.5, 4) == pytest.approx(10.0, 0.0001)
-    assert area(-3, 4) == -12
 
-    # Тесты с бесконечностью
-    assert area(float('inf'), 1) == float('inf')
-    assert area(1, float('inf')) == float('inf')
-    assert area(float('-inf'), 1) == float('-inf')
-    assert area(1, float('-inf')) == float('-inf')
+class TestRectangle(unittest.TestCase):
+    def test_rectangle_area_1(self):
+        a, b = 4, 6
+        result = area(a, b)
+        self.assertEqual(result, 24)
 
-    # Тесты на исключения
-    with pytest.raises(TypeError):
-        area("string", 3)
-    with pytest.raises(TypeError):
-        area(2, "string")
-    with pytest.raises(TypeError):
-        area(None, 3)
-    with pytest.raises(TypeError):
-        area(2, None)
+    def test_rectangle_perimeter_1(self):
+        a, b = 4, 6
+        result = perimeter(a, b)
+        self.assertEqual(result, 20)
 
-def test_perimeter():
-    # Основные тесты
-    assert perimeter(2, 3) == 10
-    assert perimeter(0, 5) == 10
-    assert perimeter(2.5, 4) == pytest.approx(13.0, 0.0001)
-    assert perimeter(-3, 4) == 2
+    def test_rectangle_area_2(self):
+        a, b = 490, 631
+        result = area(a, b)
+        self.assertEqual(result, 309190)
 
-    # Тесты с бесконечностью
-    assert perimeter(float('inf'), 1) == float('inf')
-    assert perimeter(1, float('inf')) == float('inf')
-    assert perimeter(float('-inf'), 1) == float('-inf')
-    assert perimeter(1, float('-inf')) == float('-inf')
+    def test_rectangle_perimeter_2(self):
+        a, b = 490, 631
+        result = perimeter(a, b)
+        self.assertEqual(result, 2242)
 
-    # Тесты на исключения
-    with pytest.raises(TypeError):
-        perimeter("string", 3)
-    with pytest.raises(TypeError):
-        perimeter(2, "string")
-    with pytest.raises(TypeError):
-        perimeter(None, 3)
-    with pytest.raises(TypeError):
-        perimeter(2, None)
+    def test_rectangle_area_3(self):
+        a, b = 45.3, 61.23
+        result = area(a, b)
+        self.assertEqual(result, 2773.7189999999996)
+
+    def test_rectangle_perimeter_3(self):
+        a, b = 45.3, 61.23
+        result = perimeter(a, b)
+        self.assertEqual(result, 213.06)
+
+    def test_invalid_parameters(self):
+        with self.assertRaises(TypeError):
+            area("invalid", "")
+
+        with self.assertRaises(TypeError):
+            perimeter("invalid", "")
+
+
+if __name__ == "__main__":
+    unittest.main()

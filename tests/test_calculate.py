@@ -1,30 +1,58 @@
-import pytest
+import unittest
 from calculate import calc
 
-@pytest.mark.parametrize("fig, func, size, expected", [
-    ('circle', 'perimeter', [5], 31.4159),
-    ('circle', 'area', [5], 78.5398),
-    ('square', 'perimeter', [4], 16),
-    ('square', 'area', [4], 16),
-])
-def test_calc_valid(fig, func, size, expected):
-    result = calc(fig, func, size)
-    if isinstance(expected, float):
-        assert pytest.approx(result, rel=1e-4) == expected
-    else:
-        assert result == expected
 
-@pytest.mark.parametrize("fig, func, size", [
-    ('triangle', 'area', [5, 5, 5]),
-    ('circle', 'volume', [5]),
-])
-def test_calc_invalid_inputs(fig, func, size):
-    with pytest.raises(AssertionError):
-        calc(fig, func, size)
+class TestCalc(unittest.TestCase):
 
-def test_invalid_size_parameter():
-    fig = 'square'
-    func = 'area'
-    size = ['invalid_size']
-    with pytest.raises(TypeError):
-        calc(fig, func, size)
+    def test_circle_perimeter(self):
+        fig = 'circle'
+        func = 'perimeter'
+        size = [7]
+        result = calc(fig, func, size)
+        self.assertAlmostEqual(result, 43.9823, places=4)
+
+    def test_circle_area(self):
+        fig = 'circle'
+        func = 'area'
+        size = [7]
+        result = calc(fig, func, size)
+        self.assertAlmostEqual(result, 153.9380, places=4)
+
+    def test_square_perimeter(self):
+        fig = 'square'
+        func = 'perimeter'
+        size = [6]
+        result = calc(fig, func, size)
+        self.assertEqual(result, 24)
+
+    def test_square_area(self):
+        fig = 'square'
+        func = 'area'
+        size = [6]
+        result = calc(fig, func, size)
+        self.assertEqual(result, 36)
+
+    def test_invalid_figure(self):
+        fig = 'hexagon'
+        func = 'area'
+        size = [6, 6, 6]
+        with self.assertRaises(AssertionError):
+            calc(fig, func, size)
+
+    def test_invalid_function(self):
+        fig = 'circle'
+        func = 'diameter'
+        size = [7]
+        with self.assertRaises(AssertionError):
+            calc(fig, func, size)
+
+    def test_invalid_size_parameter(self):
+        fig = 'square'
+        func = 'area'
+        size = ['invalid_size']
+        with self.assertRaises(TypeError):
+            calc(fig, func, size)
+
+
+if __name__ == "__main__":
+    unittest.main()
