@@ -8,6 +8,7 @@ sizes = {"perimeter-circle": 1, "area-circle": 1,
 
 
 def calc(fig, size, func):
+    global result
     assert fig in figs
     assert func in funcs
 
